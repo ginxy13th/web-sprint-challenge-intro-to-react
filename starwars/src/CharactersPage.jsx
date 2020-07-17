@@ -1,6 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import axios from "axios";
 import Card from './CharacterCard.jsx';
+import styled from 'styled-components';
+
+const CardContainer = styled.div`
+display:flex;
+flex-wrap: wrap;
+justify-content:center;
+`;
 
 const CharactersPage = () => {
 
@@ -8,10 +15,10 @@ const CharactersPage = () => {
 
     useEffect(() => {
             axios
-            .get('https://swapi.dev/api/people')
+            .get('https://swapi.dev/api/people/')
             .then(response => {
                 console.log(response)
-                setData([response.data.results])
+                setData(response.data.results)
             })
 
             .catch(error => {console.log('error', error)})
@@ -19,18 +26,22 @@ const CharactersPage = () => {
     }, [])
 
     return(
-        <div className='CharactersPage'>
+        <CardContainer>
             {data.map(character => {
                 return (
+                    <>
                     <Card
                     key={character.id}
-                    img={character.url}
                     name={character.name}
-                    films={character.films}
+                    height={character.height}
+                    eyeColor={character.eye_color}
+                    hairColor={character.hair_color}
+                    mass={character.mass}
                     />
+                    </>
                 )
             })}
-        </div>
+        </CardContainer>
     )
 }
 
