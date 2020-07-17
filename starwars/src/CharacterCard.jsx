@@ -12,6 +12,10 @@ width:20%;
 background-color: beige;
 border-radius:15%;
 opacity: 0.5;
+&:hover {
+    opacity: 1;
+}
+
 `;
 const Name = styled.h3`
 font-family: 'Syncopate', sans-serif;
